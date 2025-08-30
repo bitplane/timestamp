@@ -14,6 +14,9 @@ if [ ! -e "$TARGET_PATH" ]; then
     exit 1
 fi
 
+#MV="echo mv"
+MV="mv"
+
 # Process each item in the directory (non-recursive)
 for item in "$TARGET_PATH"/*; do
     # Skip if no files match (glob didn't expand)
@@ -39,7 +42,7 @@ for item in "$TARGET_PATH"/*; do
         new_path="${dirname_item}/${new_name}"
         
         # Rename the file/directory
-        mv "$item" "$new_path"
+        $MV "$item" "$new_path"
         echo "Renamed: $basename_item -> $new_name"
     else
         echo "Skipped: $basename_item (already starts with a number)"
